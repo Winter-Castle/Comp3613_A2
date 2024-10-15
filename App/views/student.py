@@ -12,7 +12,7 @@ from App.controllers import (
     jwt_required
 )
 
-student_views = Blueprint('student_views', _name_)
+student_views = Blueprint('student_views', __name__)
 
 # Create a new student
 @student_views.route('/students', methods=['POST'])
