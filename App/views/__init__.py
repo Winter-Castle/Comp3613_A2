@@ -2,9 +2,9 @@
 from .user import user_views
 from .index import index_views
 from .auth import auth_views
-from .reviews import review_views
-from .staff import staff_views
-from .students import student_views
+from .Review import review_views
+from .Staff import staff_views
+from .Student import student_views
 from .admin import setup_admin
 
 # Add all blueprints to this list
