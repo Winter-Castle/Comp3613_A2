@@ -115,9 +115,9 @@ class StudentUnitTests(unittest.TestCase):
 
     def test_get_json(self):
         """Test the JSON representation of a student."""
-        student = Student(name="John Doe", year=2, program="Computer Science")
+        student = Student(name="John Doe", year=2, program="Computer Science", email="JohnDoe@mail.com")
         student_json = student.get_json()
-        self.assertDictEqual(student_json, {"studentID": None, "name": "John Doe", "year": 2, "program": "Computer Science"})
+        self.assertDictEqual(student_json, {"studentID": None, "name": "John Doe", "year": 2, "program": "Computer Science", "email":"JohnDoe@mail.com"})
 
 # =========================
 # Student Integration Tests
@@ -128,13 +128,14 @@ class StudentsIntegrationTests(unittest.TestCase):
 
     def test_create_student(self):
         """Test creating a new student."""
-        student = create_student("John Doe", 2, "Computer Science")
+        student = create_student("John Doe", 2, "Computer Science","JohnDoe@mail.com")
         assert student.name == "John Doe"
+        
 
     def test_get_all_students(self):
         """Test retrieving all students in JSON format."""
         students_json = get_all_students()
-        self.assertListEqual([{"studentID": 1, "name": "John Doe", "year": 2, "program": "Computer Science"}], students_json)
+        self.assertListEqual([{"studentID": 1, "name": "John Doe", "year": 2, "program": "Computer Science", "email":"JohnDoe@mail.com"}], students_json)
 
     def test_update_student(self):
         """Test updating an existing student's name."""

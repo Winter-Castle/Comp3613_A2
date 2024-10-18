@@ -5,6 +5,7 @@ class Student(db.Model):
     name = db.Column(db.String(100), nullable=False)
     year = db.Column(db.Integer, nullable=False)
     program = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False, unique=True)
     # One-to-many relationship with Review
     reviews = db.relationship('Review', backref='student', lazy=True, cascade="all, delete-orphan")
 
@@ -13,5 +14,6 @@ class Student(db.Model):
             'studentID': self.studentID,
             'name': self.name,
             'year': self.year,
-            'program': self.program
+            'program': self.program,
+            'email': self.email
         }
