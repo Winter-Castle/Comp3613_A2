@@ -8,11 +8,13 @@ staff_views = Blueprint('staff_views', __name__)
 
 # Create a new staff member
 @staff_views.route('/staff', methods=['POST'])
-@jwt_required()  # Only admin users can create staff
+#@jwt_required()  # Only admin users can create staff
 def create_staff_action():
     data = request.json
     new_staff = create_staff(data['name'], data['position'], data['email'], data['department'])
-    return jsonify(new_staff.get_json()), 201
+    if new_staff:
+        return jsonify({"message":f"{data['name']} was added to the staff!!!"}), 201
+    return jsonify({"error": "Staff member with this email already exists."}), 409
 
 # Get all staff members
 @staff_views.route('/staff', methods=['GET'])

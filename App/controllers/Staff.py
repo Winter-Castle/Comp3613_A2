@@ -4,6 +4,11 @@ from App.database import db
 # Create a new staff member
 def create_staff(name, position, email, department):
     new_staff = Staff(name=name, position=position, email=email, department=department)
+    # Check if staff with the same email already exists
+    existing_staff = Staff.query.filter_by(email=email).first()
+
+    if existing_staff:
+        return None
     db.session.add(new_staff)
     db.session.commit()
     return new_staff

@@ -19,8 +19,10 @@ student_views = Blueprint('student_views', __name__)
 @jwt_required()  # Only staff or admin users can create students
 def create_student_action():
     data = request.json
-    new_student = create_student(data['name'], data['year'], data['program'])
-    return jsonify(new_student.get_json()), 201
+    new_student = create_student(data['name'], data['year'], data['program'], data['email'])
+    if new_student:
+        return jsonify(new_student.get_json()),    
+    return jsonify({"error": "Student already exists."}), 409
 
 # Get all students
 @student_views.route('/students', methods=['GET'])
@@ -36,7 +38,7 @@ def get_student_action(studentID):
     student = get_student(studentID)
     if student:
         return jsonify(student), 200
-    return jsonify({'error': 'Student not found'}), 404
+    return jsonify({'Error': 'Student not found'}), 404
 
 # Update a student's details
 @student_views.route('/students/<int:studentID>', methods=['PUT'])
@@ -44,7 +46,7 @@ def get_student_action(studentID):
 def update_student_action(studentID):
     data = request.json
     updated_student = update_student(
-        studentID, name=data.get('name'), year=data.get('year'), program=data.get('program')
+        studentID, name=data.get('name'), year=data.get('year'), program=data.get('program'), email=data.get('email')
     )
     if updated_student:
         return jsonify(updated_student), 200
