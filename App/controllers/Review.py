@@ -5,7 +5,7 @@ from datetime import datetime
 
 # Create a new review with category (positive/negative)
 def create_review(review_type, comment, review_status, category, studentID, staffID):
-    current_datetime = datetime.now()
+    current_datetime = datetime.now().replace(second=0)
     new_review = Review(
         review_type=review_type,
         comment=comment,

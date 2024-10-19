@@ -4,7 +4,6 @@ import pytest
 import logging
 import unittest
 from werkzeug.security import check_password_hash, generate_password_hash
-from datetime import datetime
 
 from App.main import create_app
 from App.database import db, create_db
@@ -200,7 +199,6 @@ class ReviewUnitTests(unittest.TestCase):
             review_type="Feedback",
             category="Positive",
             comment="Great work",
-            date=datetime(2023, 9, 30),  # Use a datetime object here
             review_Status="Approved",
             StudentID=1,
             StaffID=2
@@ -216,22 +214,20 @@ class ReviewUnitTests(unittest.TestCase):
             review_type="Feedback",
             category="Positive",
             comment="Great work",
-            date=datetime(2023, 9, 30),
             review_Status="Approved",
             StudentID=1,
             StaffID=2
         )
         review_json = review.get_json()
-        self.assertDictEqual(review_json, {
+        self.assertDictEqual({
             "reviewID": None,
             "review_type": "Feedback",
             "category": "Positive",
             "comment": "Great work",
-            "date": datetime(2023, 9, 30),
             "review_Status": "Approved",
             "studentID": 1,
             "staffID": 2
-        })
+        }, review_json)
 
 # =========================
 # Review Integration Tests
@@ -245,7 +241,6 @@ class ReviewsIntegrationTests(unittest.TestCase):
         review = create_review(
             "Feedback",
             "Great work",
-            datetime(2023, 9, 30),
             "Approved",
             "Positive",
             1,

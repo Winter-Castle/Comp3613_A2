@@ -30,7 +30,7 @@ def create_review_action():
 def get_review_action(reviewID):
     review = get_review(reviewID)
     if review:
-        return jsonify(review.get_json()), 200
+        return jsonify(review), 200
     return jsonify({'Error': 'Review not found'}), 404
 
 # Get all reviews
