@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from datetime import datetime
 from App.controllers import (
     create_review, get_review, get_all_reviews, get_reviews_by_category,
     get_reviews_for_student, get_reviews_by_staff, update_review, delete_review
@@ -16,7 +17,6 @@ def create_review_action():
     new_review = create_review(
         review_type=data['review_type'],
         comment=data['comment'],
-        date=data['date'],
         review_status=data['review_status'],
         category=data['category'],
         studentID=data['studentID'],

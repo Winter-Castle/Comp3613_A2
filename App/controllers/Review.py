@@ -1,12 +1,15 @@
 from App.models import Review
 from App.database import db
+from datetime import datetime
+
 
 # Create a new review with category (positive/negative)
-def create_review(review_type, comment, date, review_status, category, studentID, staffID):
+def create_review(review_type, comment, review_status, category, studentID, staffID):
+    current_datetime = datetime.now()
     new_review = Review(
         review_type=review_type,
         comment=comment,
-        date=date,
+        date=current_datetime,
         review_Status=review_status,
         category=category,  # New category field
         StudentID=studentID,
