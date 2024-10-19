@@ -21,7 +21,7 @@ def create_student_action():
     data = request.json
     new_student = create_student(data['name'], data['year'], data['program'], data['email'])
     if new_student:
-        return jsonify(new_student.get_json()),    
+        return jsonify(f"{data['name']} has been created!!!"),201    
     return jsonify({"error": "Student already exists."}), 409
 
 # Get all students

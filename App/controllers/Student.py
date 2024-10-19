@@ -5,7 +5,6 @@ from App.database import db
 def create_student(name, year, program, email):
     new_student = Student(name=name, year=year, program=program, email=email)
     existing_student = Student.query.filter_by(email=email).first()
-
     if not existing_student:
         db.session.add(new_student)
         db.session.commit()
