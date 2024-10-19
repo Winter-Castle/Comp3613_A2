@@ -1,3 +1,5 @@
+# Postman Collection (for testing) 
+https://winter-castle.postman.co/workspace/Winter-Castle-Workspace~eb31d5c2-a4b3-4d66-9866-83791246b96e/collection/33338944-88358edd-bd9c-47d2-9f9d-3bacbf1d1db4?action=share&creator=33338944&active-environment=33338944-36ca6507-b58c-486c-b7d1-d24324148834
 
 # Flask Commands
 
